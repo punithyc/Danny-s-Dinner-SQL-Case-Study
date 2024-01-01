@@ -124,7 +124,7 @@ select customer_id,sum(points) from cte2
 group by customer_id
 ```
 ## Bonus questions queries
-__*1.Join All The Things__*
+*__1.Join All The Things__*
 ```
 SELECT s.customer_id, s.order_date, m.product_name, m.price, 
 CASE WHEN s.order_date >= mem.join_date THEN 'Y'
@@ -137,7 +137,7 @@ LEFT JOIN members mem
 ON s.customer_id = mem.customer_id ;
 ```
 
-__*2.Rank All The Things__*
+*__2.Rank All The Things__*
 ```
 WITH cte_bonus AS(
  SELECT s.customer_id, s.order_date, m.product_name, m.price, 

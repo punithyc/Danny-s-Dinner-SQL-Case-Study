@@ -51,9 +51,38 @@ Danny has shared with you 3 key datasets for this case study:<br>
 ```
   
   *__3.What was the first item from the menu purchased by each customer?__*
+  ```
+with cte as(SELECT s.customer_id, s.order_date, m.product_name, 
+  dense_rank() OVER(partition by s.customer_id ORDER BY s.order_date) as rnk
+  FROM sales s 
+  JOIN menu m 
+  ON s.product_id = m.product_id)
+  select customer_id,group_concat(product_name) from cte 
+  where rnk=1
+  group by customer_id
+```
   *__4.What is the most purchased item on the menu and how many times was it purchased by all customers?__*
+  ```
+select m.product_name,count(m.product_name) as total
+from sales as s inner join menu as m ON s.product_id = m.product_id
+group by m.product_name
+order by total desc
+limit 1
+```
   *__5.Which item was the most popular for each customer?__*
+```
+with cte as(select s.customer_id,m.product_name,count(m.product_name) cnt
+from sales as s join menu as m on  s.product_id = m.product_id
+group by customer_id,product_name),
+cte2 as(
+select *,dense_rank() over(partition by customer_id order by cnt desc) as popular from cte)
+select customer_id,group_concat(product_name) from cte2 
+where popular =1
+group by customer_id
+```
   *__6.item was purchased first by the customer after they became a member?__*
+
+  
   *__7.Which item was purchased just before the customer became a member?__*
   *__8.What is the total items and amount spent for each member before they became a member?__*
   *__9.If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?__*

@@ -81,10 +81,47 @@ where popular =1
 group by customer_id
 ```
   *__6.item was purchased first by the customer after they became a member?__*
-
-  
+```
+select customer_id,product_name 
+from(select s.*,me.join_date,m.product_name,dense_rank() over(partition by customer_id order by order_date) as fst 
+from sales as s join  members as me on s.customer_id=me.customer_id join menu as m on s.product_id=m.product_id
+where s.order_date>me.join_date) s
+where fst=1
+```
   *__7.Which item was purchased just before the customer became a member?__*
+  ```
+select customer_id,group_concat(product_name)
+from(select s.*,me.join_date,m.product_name,dense_rank() over(partition by customer_id order by order_date) as fst
+from sales as s join  members as me on s.customer_id=me.customer_id join menu as m on s.product_id=m.product_id
+where s.order_date<me.join_date) as s
+ where fst =1
+ group by customer_id
+```
   *__8.What is the total items and amount spent for each member before they became a member?__*
+  ```
+select s.customer_id,sum(m.price) as amount_spent,count(product_name) as total
+from sales as s join  members as me on s.customer_id=me.customer_id join menu as m on s.product_id=m.product_id
+where s.order_date<me.join_date
+group by s.customer_id
+```
+
   *__9.If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?__*
+  ```
+with cte as(select *,case when product_id= 1 then price*20 else price*10 end as points from menu)
+SELECT s.customer_id, SUM(c.points) AS total_points 
+FROM cte c
+JOIN sales s 
+ON s.product_id = c.product_id
+group by customer_id
+```
   *__10.In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?__*
+  ```
+with cte as(select s.*,me.join_date,m.price
+from sales as s join menu as m on s.product_id=m.product_id join members as me on me.customer_id=s.customer_id
+where s.order_date>me.join_date and month(order_date)=1),
+cte2 as(select *,case when timestampdiff(day,join_date,order_date)<=7 then price*20 else 0 end as points from cte)
+select customer_id,sum(points) from cte2
+group by customer_id
+```
+
 

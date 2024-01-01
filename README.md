@@ -35,5 +35,27 @@ Danny has shared with you 3 key datasets for this case study:<br>
 ## Bonus Questions
 * 1.Join All The Things
 * 2.Rank All The Things
+
+## Case study Analysis using Mysql
+  *__1.What is the total amount each customer spent at the restaurant?__*
+  ```
+   select  s.customer_id,sum(m.price) as total
+   from sales as s join menu as m on s.product_id=m.product_id
+   group by s.customer_id
+```
+  *__2.How many days has each customer visited the restaurant?__*
+  ```
+   select customer_id,count(distinct order_date) as days
+   from sales
+   group by customer_id
+```
   
+  *__3.What was the first item from the menu purchased by each customer?__*
+  *__4.What is the most purchased item on the menu and how many times was it purchased by all customers?__*
+  *__5.Which item was the most popular for each customer?__*
+  *__6.item was purchased first by the customer after they became a member?__*
+  *__7.Which item was purchased just before the customer became a member?__*
+  *__8.What is the total items and amount spent for each member before they became a member?__*
+  *__9.If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?__*
+  *__10.In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?__*
 

@@ -165,5 +165,6 @@ This demonstrated the power of utilizing data to drive business strategies, enha
 *__For more details__* :  [Case study](https://8weeksqlchallenge.com/case-study-1/)
 
 ## For any queries/doubts
-*__Connect here__* :  [Linkedin](https://www.linkedin.com/in/punith-yc-2240b6267/)   [Leetcode](https://leetcode.com/punithyc8688/)   [HackerRank](https://www.hackerrank.com/profile/punithyc8688)  [GitHub](https://github.com/punithyc)
+*__Connect here__* :  
+[Linkedin](https://www.linkedin.com/in/punith-yc-2240b6267/)  <br> [Leetcode](https://leetcode.com/punithyc8688/) <br>  [HackerRank](https://www.hackerrank.com/profile/punithyc8688)<br>  [GitHub](https://github.com/punithyc)
 

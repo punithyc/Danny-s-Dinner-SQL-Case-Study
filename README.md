@@ -161,7 +161,8 @@ from cte_bonus
 The analysis of Danny's Dinner case study through SQL has provided valuable insights into various aspects of the business. By querying the database, I've been able to uncover crucial information regarding sales trends, customer preferences, popular items, and more<br>
 This demonstrated the power of utilizing data to drive business strategies, enhance customer satisfaction, and ultimately improve the overall performance of Danny's Dinner Restaurant.
 
-
+## For more Details
+[link](https://8weeksqlchallenge.com/case-study-1/)
 
 
 This demonstrated the power of utilizing data to drive business strategies, enhance customer satisfaction, and ultimately improve the overall performance of Danny's Dinner.

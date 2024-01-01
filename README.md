@@ -16,5 +16,13 @@ Danny has shared with you 3 key datasets for this case study:<br>
 * *__Members__*
 
 ## Entity Relationship Diagram
-![Alt image]("relationship diagram.png")
+
+![relationship diagram](https://github.com/punithyc/Danny-s-Dinner-SQL-Case-Study/assets/123263654/ad9f59b6-0943-4ee6-a765-75335522cf2f)
+
+
+## Technologies used
+* *__Mysql__*
+
+
+  
 
